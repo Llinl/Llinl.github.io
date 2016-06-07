@@ -4,7 +4,6 @@
 
 //var buttons = 8;
 //var money = 1000;
-var canvasMap;
 
 //var arrMoneyMakers = [];
 //var arrMmProd = [1,10,100,1000,10000,100000,1000000,10000000];
@@ -61,14 +60,17 @@ var imageRepository = new function () {
 };
 
 var Person = function(startPosX, startPosY){
-    var oldX,oldY,newX,newY;
+    var oldX = 0;
+    var oldY = 0;
+    var newX = 0;
+    var newY = 0;
     var startX = startPosX;
     var startY = startPosY;
+    var type = 0;
+
     var reset = function() {
         console.log("Person Reset");
-        console.log("oldX = " + oldX);
         oldX = startPosX;
-        console.log("oldX = " + oldX);
         oldY = startPosY;
         newX = startPosX;
         newY = startPosY;
@@ -81,14 +83,20 @@ var Person = function(startPosX, startPosY){
         oldY:oldY,
         newX:newX,
         newY:newY,
+        type:type,
         reset:reset};
 };
 
 var Map = function() {
-
+    var mapWidth = 0;
+    var mapHeight = 0;
+    var tileWidth = 0;
+    var tileHeight = 0;
+    var tileScale = 0;
+    var startPos = {};
      if (small) {
-         var mapWidth = 9;
-         var mapHeight = 9;
+         mapWidth = 9;
+         mapHeight = 9;
          tileWidth = 24;
          tileHeight = 24;
          tileScale = 2;
@@ -104,12 +112,12 @@ var Map = function() {
                  [0, 0, 1, 0, 0, 0, 1, 1, 1],
                  [1, 0, 1, 0, 1, 0, 1, 1, 1]];
 
-         var startPos = {X:4,Y:1};
+          startPos = {X:4,Y:1};
      }
 
      else {
-         var mapWidth = 18;
-         var mapHeight = 18;
+         mapWidth = 18;
+         mapHeight = 18;
          tileWidth = 24;
          tileHeight = 24;
          tileScale = 1;
@@ -133,7 +141,7 @@ var Map = function() {
              [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
              [1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1]];
 
-         var startPos = {X:8,Y:1};
+          startPos = {X:8,Y:1};
         }
 
      return {
@@ -162,12 +170,13 @@ var Map = function() {
          people: {
              canvas: document.getElementById("people"),
              context : document.getElementById("people").getContext("2d"),
-             citizens:300,
+             citizens:10000,
              population:[],
              init: function(){
              console.log("People init");
                  for(var i = 0; i < this.citizens; i++){
                      var p = new Person(startPos.X, startPos.Y);
+                     p.type = 1;
                      //p.X = 4;
                      //p.Y = 4;
                      this.population.push(p);
@@ -195,19 +204,13 @@ var Map = function() {
                          this.population[people].oldY = this.population[people].newY;
                          this.population[people].newX = this.population[people].startX;
                          this.population[people].newY = this.population[people].startY;
-                         //this.population[people] = this.population[people].reset();
-                         //this.population[people].oldX = this.population[people].newX;
-                         //this.population[people].oldY = this.population[people].newY;
-                         //this.population[people].newX = 4;
-                         //this.population[people].newY = 1;
                      }
                      else {
-                         console.log("else...");
                          var moved = false;
                          var nextStep = {X: 0, Y: 0};
                          while (moved === false) {
                              nextStep = {X: 0, Y: 0};
-                             var rnd = Math.floor((Math.random() * 4));
+                             var rnd = Math.floor(Math.random() * 4);
                              if (rnd === 0) nextStep.X = -1;
                              if (rnd === 1) nextStep.X = 1;
                              if (rnd === 2) nextStep.Y = -1;
@@ -237,7 +240,7 @@ var Map = function() {
 
                      //console.log("newX = " + this.population[people].newX + " newY = " + this.population[people].newY);
 
-				     this.context.drawImage(imageRepository.spriteMap, 1 * 16, 0,16 ,16 ,this.population[people].newX * tileWidth * tileScale , this.population[people].newY * tileHeight * tileScale,tileWidth * tileScale, tileHeight * tileScale);
+				     this.context.drawImage(imageRepository.spriteMap, this.population[people].type * 16, 0,16 ,16 ,this.population[people].newX * tileWidth * tileScale , this.population[people].newY * tileHeight * tileScale,tileWidth * tileScale, tileHeight * tileScale);
                  }
              }
          }
@@ -264,7 +267,8 @@ function init(){
     map.people.init();
     map.people.redraw();
 
-    var myVar = setInterval(movePeople, 1000);
+    //var myVar = setInterval(movePeople, 1000);
+    setInterval(movePeople, 1000);
 
     //map.player.redraw();
 
@@ -287,10 +291,10 @@ function movePeople(){
 }
 
 function switchSize(){
-    var context= document.getElementById("background").getContext("2d");
-    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-    context = document.getElementById("people").getContext("2d");
-    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+    var contextb= document.getElementById("background").getContext("2d");
+    contextb.clearRect(0, 0, context.canvas.width, context.canvas.height);
+    var contextp = document.getElementById("people").getContext("2d");
+    contextp.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
     small = !small;
     map = new Map();
