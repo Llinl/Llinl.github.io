@@ -1,0 +1,96 @@
+/* Game */
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+}
+
+#gameContainer{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 50px);
+    margin: 14px;
+
+}
+
+/* Top tab */
+
+.tabButton{
+    width:128px;
+    height:50px;
+    border: 3px solid black;
+    color: black;
+    background: white;
+    font-size: 20px;
+    text-align: center;
+    margin: 7px;
+    padding: 5px 5px;
+}
+
+/* Log */
+#logWrap{
+    width:100%;
+    height:calc(100vh - 50px);
+    border: 1px solid black;
+    background: white;
+    font-size: 1.12em;
+    text-align: left;
+    padding: 3px;
+}
+
+
+#panelsContainer{
+    border: 1px solid black;
+     width: 100%;
+     height: auto;
+    max-height: calc(100vh - 50px);
+ }
+
+/* Map */
+.mapCanvasWrap{
+    border: 1px solid black;
+    background:green;
+    height:calc(100vh - 100px);
+}
+#mapCanvas{
+    width: auto;
+    height: auto;
+    max-height: calc(100vh - 150px);
+}
+.mapStatWrap{
+    border: 1px solid black;
+    width:100%;
+    height:calc(100vh - 100px);
+}
+.mapStat{
+    color:black;
+    font-size: 1.12em;
+}
+/* ***************************************** */
+.btnFrames{
+    width:100%;
+}
+#scoreWrap{
+    display:block;
+    background:green;
+    width:100%;
+}
+.wrap {
+    width: 100%;
+    overflow:auto;
+}
+.mapright{
+    float:left;
+    width: 40%;
+    background:blue;
+    height: 400px;
+}
+.mapmid{
+    float:left;
+    width: 60%;
+    background:green;
+    height: 400px;
+}
