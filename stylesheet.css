@@ -59,10 +59,14 @@ canvas {
     height: auto;
     max-height: calc(100vh - 150px);
 }
-.mapStatWrap{
+.henchStatWrap {
     border: 1px solid black;
     width:100%;
     height:calc(100vh - 100px);
+}
+.henchStat{
+    border: 1px solid black;
+    width:100%;
 }
 .mapStat{
     color:black;
