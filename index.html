@@ -1,105 +1,102 @@
 <!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head;
-        any other head content must come *after* these tags -->
-        <title>Game</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head;
+    any other head content must come *after* these tags -->
+    <title>Game</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
-    </head>
-    <body>
+</head>
+<body>
+    <div id = "gameWrap">
+        <div class = "row" id = "playarea-wrap">
+            <div class = "col-xs-1 bookmark-wrap" id = "bookmarks-L-Wrap">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><div class = "tabButton"><a data-toggle= "pill" href="#mapWrap">Map</a></div></li>
+                    <li><div class = "tabButton"><a data-toggle= "pill" href="#henchWrap">Henchmen</a></div></li>
+                    <li><div class = "tabButton"><a data-toggle= "pill" href="#trainingWrap">Training</a></div></li>
+                    <li><div class = "tabButton"><a data-toggle= "pill" href="#researchWrap">Research</a></div></li>
+                    <li><div class = "tabButton"><a data-toggle= "pill" href="#factoryWrap">Factory</a></div></li>
+                    <li><div class = "tabButton"><a data-toggle= "pill" href="#powersWrap">Powers</a></div></li>
+                    <li><div class = "tabButton"><a data-toggle= "pill" href="#slideWrap">Slide</a></div></li>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
-
-        <div class="container-fluid" id = "gameContainer" style="width:1024px; height:600px;">
-            <div class="row">
-                <ul class="nav nav-pills ">
-                    <li><div class = "tabButton" onclick="changePanel(0)"> Map</div></li>
-                    <li><div class = "tabButton" onclick="changePanel(1)">Henchmen</div></li>
-                    <li><div class = "tabButton" onclick="changePanel(2)">Training</div></li>
-                    <li><div class = "tabButton" onclick="changePanel(3)">Research</div></li>
-                    <li><div class = "tabButton" onclick="changePanel(4)">Factory</div></li>
-                    <li><div class = "tabButton" onclick="changePanel(5)">Powers</div></li>
-                    <li><div class = "tabButton" onclick="changePanel(6)">Slide</div> </li>
                 </ul>
             </div>
-            <div class="row">
-                <div class="col-xs-2">
-                    <div id = "logWrap" style = "float: left;">
-                        <button id = butMove onclick="movePeople()">Move</button>
-                        <button id = butSize onclick="resetMap()">Reset</button>
-                        <span style = "display: block;">Log log log log</span>
-                        <span style = "display: block;">Log log log log</span>
+            <div class = "col-xs-10 comic-wrap">
+            <!-- 526x386  4/3-->
+                <div class = "comicPage tab-pane fade in active"  id="mapWrap">
+                    <div class = "row" id="pagesWrap">
+                        <div class ="col-xs-5" id="pageL">
+                            <div class="comicPanel" id = "topPanelL">
+                                <canvas id="background" class='img-responsive' width="690" height="690">
+                                    Your browser does not support canvas.  <br>Please try again with a different browser.
+                                </canvas>
+                                <canvas id="people" class='img-responsive' width="690" height="690">
+                                    Your browser does not support canvas.  <br>Please try again with a different browser.
+                                </canvas>
+                                <canvas id="player" class='img-responsive' width="690" height="690">
+                                    Your browser does not support canvas.  <br>Please try again with a different browser.
+                                </canvas>
+                            </div>
+                            <div class="comicPanel" id = "bottomPanelL">
+
+                            </div>
+
+                        </div>
+                        <div class = "col-xs-2" id = "midline">
+                            <img src = "Resources/Images/fold.png" height="100%">
+                        </div>
+                        <div class ="col-xs-5" id="pageR">
+                            <div class="comicPanel" id = "topPanelR">
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-xs-10">
-                    <div id = "panelsContainer" class="container">
-                        <div id = "panelMap" class="row" style="display:inline;">
-                            <div class="col-xs-7" style = "padding-left: 0; color:black;">
 
-                                <canvas id="background" class='img-responsive' width="456" height="456"></canvas>
-                                <canvas id="people" class='img-responsive' width="456" height="456">
-                                    Your browser does not support canvas.  <br>Please try again with a different browser.
-                                </canvas>
-                                <canvas id="player" class='img-responsive' width="456" height="456">
-                                    Your browser does not support canvas.  <br>Please try again with a different browser.
-                                </canvas>
-                            </div>
-                            <div class="col-xs-5">
-                                <div class="henchStatWrap">
-                                    <div class="henchStat">
-                                        <H3>Hench</H3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        &lt;!&ndash;HENCHMEN SCREEN&ndash;&gt;
-                        <div id = "panelHenchmen" style="display:none;">
-                            <h1>HENCHMEN</h1>
-                        </div>
-                        <div id = "panelTraining" style="display:none;">
-                            <h1>TRAINING</h1>
-                        </div>
-                        <div id = "panelResearch" style="display:none;">
-                            <h1>Research</h1>
-                        </div>
-                        <div id = "panelFactory" style="display:none;">
-                            <h1>Factory</h1>
-                        </div>
-                        <div id = "panelPowers" style="display:none;">
-                            <h1>POWERS</h1>
-                        </div>
-                        <div id = "panelSlide" style="display:none;">
-                            <h1>SLIDE</h1>
-                        </div>
-                    </div>
+                <div class = "comicPage tab-pane fade"  id="henchWrap">
+                    <h1>Henchmen</h1>
+                </div>
+                <div class = "comicPage tab-pane fade"  id="trainingWrap">
+                    <h1>Training</h1>
+                </div>
+                <div class = "comicPage tab-pane fade"  id="researchWrap">
+                    <h1>Research</h1>
+                </div>
+                <div class = "comicPage tab-pane fade"  id="factoryWrap">
+                    <h1>Factory</h1>
+                </div>
+                <div class = "comicPage tab-pane fade"  id="powersWrap">
+                    <h1>Powers</h1>
+                </div>
+                <div class = "comicPage tab-pane fade"  id="slideWrap">
+                    <h1>Slide</h1>
                 </div>
             </div>
+            <div class = "col-xs-1 bookmark-wrap" id = "bookmarks-R-Wrap">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><div class = "tabButton"><a data-toggle= "pill" href="#mapWrap">Map</a></div></li>
+                    <li><div class = "tabButton"><a data-toggle= "pill" href="#henchWrap">Henchmen</a></div></li>
+                    <li><div class = "tabButton"><a data-toggle= "pill" href="#trainingWrap">Training</a></div></li>
+                    <li><div class = "tabButton"><a data-toggle= "pill" href="#researchWrap">Research</a></div></li>
+                    <li><div class = "tabButton"><a data-toggle= "pill" href="#factoryWrap">Factory</a></div></li>
+                    <li><div class = "tabButton"><a data-toggle= "pill" href="#powersWrap">Powers</a></div></li>
+                    <li><div class = "tabButton"><a data-toggle= "pill" href="#slideWrap">Slide</a></div></li>
+                </ul>
+            </div>
         </div>
-      <!-- <div id="Screen1" style="display:none;">
-            <h2>
-                MoneyMaker1 :<span id = "mm0">0</span>  <button id = butMm0
-                onclick="butClickMm(0)">Buy <span id="but0Cost">0</span> </button><br>
-                MoneyMaker2 :<span id = "mm1">0</span>  <button id = butMm1
-                onclick="butClickMm(1)">Buy <span id="but1Cost">0</span> </button><br>
-                MoneyMaker3 :<span id = "mm2">0</span>  <button id = butMm2
-                onclick="butClickMm(2)">Buy <span id="but2Cost">0</span> </button><br>
-                MoneyMaker4 :<span id = "mm3">0</span>  <button id = butMm3
-                onclick="butClickMm(3)">Buy <span id="but3Cost">0</span> </button><br>
-                MoneyMaker5 :<span id = "mm4">0</span>  <button id = butMm4
-                onclick="butClickMm(4)">Buy <span id="but4Cost">0</span> </button><br>
-                MoneyMaker6 :<span id = "mm5">0</span>  <button id = butMm5
-                onclick="butClickMm(5)">Buy <span id="but5Cost">0</span> </button><br>
-                MoneyMaker7 :<span id = "mm6">0</span>  <button id = butMm6
-                onclick="butClickMm(6)">Buy <span id="but6Cost">0</span> </button><br>
-                MoneyMaker8 :<span id = "mm7">0</span>  <button id = butMm7
-                onclick="butClickMm(7)">Buy <span id="but7Cost">0</span> </button><br>
-            </h2>
-        </div>&ndash;&gt;
-        -->
-        <script src="gameScript2.js"></script>
-    </body>
+    </div>
+    <script src="preloader.js"></script>
+    <script src="sprite.js"></script>
+    <script src="map.js"></script>
+    <script src="frame.js"></script>
+
+    <script src="VillainIdler.js"></script>
+</body>
+</html>

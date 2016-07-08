@@ -1,99 +1,163 @@
-/* Game */
-
-canvas {
+canvas{
     position: absolute;
-    top: 0;
-    left: 0;
-    background: transparent;
+    width:calc(94.5%);
+    /* Use calc to make sure that browser without transform support
+     * (that therefore also dont support calc) don't
+     * actually move your elements. */
+    //left: calc(50%);
+    //top: calc(50%);
+    /* Don't forget to prefix. */
+    //transform: translate(-50%,-50%);
+    box-sizing: border-box;
 }
-
-#gameContainer{
+.comicPage{
+    height: 99vh;
+    position: absolute;
+}
+#gameWrap {
     font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 100%;
-    height: auto;
-    max-height: calc(100vh - 50px);
-    margin: 14px;
-
+    //border: 1px solid black;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    box-sizing: border-box;
+    padding: 0 0 0 0;
+}
+#playarea-wrap {
+    //border: 1px solid black;
+    width:155vh;
+    height: 99vh;
+    //background: orange;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 0 0 0 0;
 }
 
-/* Top tab */
 .tabButton{
-    width:128px;
-    height:50px;
-    border: 3px solid black;
-    color: black;
+    width: 10vh;
+    border: 1px solid black;
+    background: lightgrey;
+}
+.bookmark-wrap{
+    //border: 1px solid black;
+    width:10vh;
+    //height: 99vh;
+    //background: lightgrey;
+    box-sizing: border-box;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+/*#bookmarks-L-Wrap{
+    border: 1px solid black;
+    width:11vh;
+    height: 100vh;
+    background: lightgrey;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 0 0 0 0;
+}
+#bookmarks-R-Wrap{
+    border: 1px solid black;
+    width:11vh;
+    height: 100vh;
+    background: lightgrey;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 0 0 0 0;
+}*/
+
+.comic-wrap{
+    border: 1px solid black;
+    width:133vh;
+    height: 99vh;
+    background: greenyellow;
+    box-sizing: border-box;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+#mapWrap {
+    //border: 1px solid black;
+    width:133vh;
+    height: 99vh;
+    background: red;
+    box-sizing: border-box;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+#pagesWrap{
+    //border: 1px solid black;
+    //width:100vh;
+    height: 99vh;
+    margin: 0 0 0 0;
     background: white;
-    font-size: 20px;
-    text-align: center;
-    margin: 7px;
-    padding: 5px 5px;
 }
-
-/* Log */
-#logWrap{
-    width:100%;
-    height:calc(100vh - 50px);
+.comicPanel{
+    //border: 1px solid black;
+    //padding: 10px 10px 10px 10px;
+    pading:0 0 0 0;
+    margin: 2vh 2vh 2vh 2vh;
+}
+#pageL{
+    //border: 1px solid black;
+    width:48%;
+    height: 99vh;
+    background: #fff7ca;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+#midline{
+    width:4%;
+    height:99vh;
+    //border: 1px solid black;
+    padding-left: 0;
+    padding-right: 0;
+}
+#pageR{
+    //border: 1px solid black;
+    width:48%;
+    //height: 75vh;
+    background: #fdf0d0;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+#topPanelL{
     border: 1px solid black;
+    width:94%;
+    //height: 690px;
+    padding-bottom: 93.6%;
+    background:deeppink;
+
+}
+#bottomPanelL{
+    border: 1px solid black;
+    //width:66vh;
+    height: 32.96vh;
     background: white;
-    font-size: 1.12em;
-    text-align: left;
-    padding: 3px;
+    //background-image: url("Resources/Images/LogImg.png");
+    background-size: 100%;
+    overflow-y: auto;
 }
 
+.logMsg{
+    display: inline-block;
+    background: white;
+    width:auto;
+    border: 1px solid black;
+    border-radius: 2vh;
+    font-size: 2vh;
+    font-weight: 700;
+}
 
-#panelsContainer{
+#topPanelR{
     border: 1px solid black;
-     width: 100%;
-     height: auto;
-    max-height: calc(100vh - 50px);
- }
+    //width:66vh;
+    height: 95vh;
+    background: lightpink;
+}
 
-/* Map */
-.mapCanvasWrap{
-    border: 1px solid black;
-    background:green;
-    height:calc(100vh - 100px);
-}
-#mapCanvas{
-    width: auto;
-    height: auto;
-    max-height: calc(100vh - 150px);
-}
-.henchStatWrap {
-    border: 1px solid black;
-    width:100%;
-    height:calc(100vh - 100px);
-}
-.henchStat{
-    border: 1px solid black;
-    width:100%;
-}
-.mapStat{
-    color:black;
-    font-size: 1.12em;
-}
-/* ***************************************** */
-.btnFrames{
-    width:100%;
-}
-#scoreWrap{
-    display:block;
-    background:green;
-    width:100%;
-}
-.wrap {
-    width: 100%;
-    overflow:auto;
-}
-.mapright{
-    float:left;
-    width: 40%;
-    background:blue;
-    height: 400px;
-}
-.mapmid{
-    float:left;
-    width: 60%;
-    background:green;
-    height: 400px;
+.Absolute-Center {
+    //margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
 }

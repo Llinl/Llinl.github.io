@@ -1,64 +1,3 @@
-//var small = false;
-
-
-
-//This will start the program snce onload calls the init after it is done.
-var imageRepository = new function () {
-    "use strict";
-    console.log("Start image load");
-    let numImages = 2;
-    let numLoaded = 0;
-
-    // Define images
-    this.imgMap = new Image();
-    this.spriteMap = new Image();
-
-    // Ensure all images have loaded before starting the game
-
-    function imageLoaded() {
-        console.log("Image loaded");
-        numLoaded++;
-        if (numLoaded === numImages) {
-            window.init();
-        }
-    }
-    this.imgMap.onload = function() {
-        imageLoaded();
-    };
-
-    this.spriteMap.onload = function() {
-        imageLoaded();
-    };
-
-    // Set images src
-    this.imgMap.src = "./Resources/Images/CityTileMap.png";
-    this.spriteMap.src = "./Resources/Images/SpriteMap.png";
-};
-
-class Sprite {
-    constructor(spritemap, tileNr) {
-        this._spritemap = spritemap;
-        this._tileNr = tileNr;
-        this._width = 0;
-        this._height = 0;
-    };
-    get spritemap() {return this._spritemap;} set spritemap(value){this._spritemap = value;}
-    get tileNr() {return this._tileNr;} set tileNr(value) {this._tileNr = value;}
-
-    get width() {return this._width;} set width(value) {this._width = value;}
-    get height() {return this._height;} set height(value) {this._height = value;};
-}
-
-class Position{
-    constructor(x, y){
-        this._x = x;
-        this._y = y;
-    }
-    get X(){return this._x;} set X(value){this._x = value;}
-
-    get Y(){return this._y; } set Y(value){this._y = value;}
-}
-
 class Mapmaker {
     constructor() {
         this.block = [];
@@ -83,10 +22,10 @@ class Mapmaker {
             [1, 1, 4, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 4, 1, 1]
         ];
         this.base = [[0,0,0,0,0],
-                     [0,1,1,1,0],
-                     [0,1,1,1,0],
-                     [0,1,1,1,0],
-                     [0,0,0,0,0]];
+            [0,1,1,1,0],
+            [0,1,1,1,0],
+            [0,1,1,1,0],
+            [0,0,0,0,0]];
     };
 
     drawMap(map,width,height,x,y){
@@ -190,7 +129,6 @@ class Mapmaker {
     buildHouses(map){
         for(let h = 0; h < 5;h++) {
             for (let w = 0; w < 5; w++) {
-                console.log("w = " + w)
                 map[h+7][w+7] = this.base[h][w];
             }
         }
@@ -238,26 +176,14 @@ class Mapmaker {
     };
 }
 
-class Person extends Sprite{
-    constructor(pos){
-        super(imageRepository.spriteMap,0);
-        this.width = 24;
-        this.height = 24;
-        this._oldPos = pos;
-        this._newPos = pos;
-        this._startPos = pos;
+class Position{
+    constructor(x, y){
+        this._x = x;
+        this._y = y;
     }
-     reset() {
-         console.log("Person Reset");
+    get X(){return this._x;} set X(value){this._x = value;}
 
-         this._oldPos = this._newPos;
-         this._newPos = this._startPos;
-    };
-
-    get oldPos(){return this._oldPos;}
-    set oldPos(value){this._oldPos = value;}
-    get newPos(){return this._newPos;}
-    set newPos(value){this._newPos = value;}
+    get Y(){return this._y; } set Y(value){this._y = value;}
 }
 
 class Map{
@@ -266,12 +192,12 @@ class Map{
         this.mapHeight = 19;
         this.tileWidth = 24;
         this.tileHeight = 24;
-        this.tileScale = 1;
+        this.tileScale = 1.5;
 
         this.startPos = new Position(9, 7);
     }
 
-     testEdges (person){
+    testEdges (person){
         if (person.newPos.X === 0) return false;
         if (person.newPos.X === this.mapWidth-1) return false;
         if (person.newPos.Y === 0) return false;
@@ -335,7 +261,6 @@ class Background extends Map{
         }
     }
 }
-
 class People extends Map{
     constructor(){
         super();
@@ -374,7 +299,6 @@ class People extends Map{
     //noinspection JSUnusedGlobalSymbols
     move () {
         console.log("Map People Move");
-        console.log("this.citizens = " + this.citizens);
         for (let people = 0; people < this.citizens; people++) {
             console.log("people = " + people);
             let person = this.population[people];
@@ -402,13 +326,10 @@ class People extends Map{
                 this.population[people].reset();
 
             }
-            console.log (".newPos.X = " + this.population[people].newPos.X);
-            console.log (".newPos.Y = " + this.population[people].newPos.Y);
         }
     }
     redraw() {
         console.log("Map People Redraw");
-        console.log(this.population);
         for (let people = 0; people < this.citizens; people++) {
             let person = this.population[people];
             this.context.clearRect(person.oldPos.X * this.tileWidth * this.tileScale, person.oldPos.Y * this.tileHeight * this.tileScale, this.tileWidth * this.tileScale, this.tileHeight * this.tileScale);
@@ -417,66 +338,43 @@ class People extends Map{
     }
 }
 
-
 class Player extends Map {
     constructor() {
-
+        super();
         //this.canvas = document.getElementById("player");
         this.context = document.getElementById("player").getContext("2d");
     }
-        static redraw(){
-            for (let h = 0; h < 9; h++) {
-                for (let w = 0; w < 9; w++) {
-                    //this.context.drawImage(imageRepository.imgMap,
-                    // (1 - cityMap[w][h]) * 24, 0, 24, 24, h * 48, w * 48, 48, 48);
-                }
-            }
-        };
-}
-
-var back = new Background();
-var peo =  new People();
-//var pla = new Player();
-
-function init(){
-    back.redraw();
-    peo.redraw();
-
-   //setInterval(movePeople, 1000);
-}
-
-function resetMap(){
-    back = new Background();
-    back.redraw();
-}
-
-function movePeople(){
-    peo.move();
-    peo.redraw();
-}
-
-
-/*
-function switchSize(){
-    var contextb= document.getElementById("background").getContext("2d");
-    contextb.clearRect(0, 0, contextb.canvas.width, contextb.canvas.height);
-    var contextp = document.getElementById("people").getContext("2d");
-    contextp.clearRect(0, 0, contextp.canvas.width, contextp.canvas.height);
-
-    small = !small;
-    back = new Background();
-    peo = new People();
-    back.redraw();
-    peo.redraw();
-}
-*/
-function closeAllPanels(){
-    for(var p in panels){
-        document.getElementById(panels[p]).style["display"] = "none";
+    movePlayer(e){
+        console.log("Move");
+        switch(e.keyCode){
+            case 37:
+                //West
+                e.preventDefault();
+                console.log("Move west");
+                break;
+            case 38:
+                //North
+                e.preventDefault();
+                console.log("Move north");
+                break;
+            case 39:
+                //East
+                e.preventDefault();
+                console.log("Move east");
+                break;
+            case 40:
+                //South
+                e.preventDefault();
+                console.log("Move south");
+                break;
+        }
     }
-}
-//noinspection JSUnusedLocalSymbols
-function changePanel(nr){
-    closeAllPanels();
-    document.getElementById(panels[nr]).style["display"]="inline";
+    static redraw(){
+        for (let h = 0; h < 9; h++) {
+            for (let w = 0; w < 9; w++) {
+                //this.context.drawImage(imageRepository.imgMap,
+                // (1 - cityMap[w][h]) * 24, 0, 24, 24, h * 48, w * 48, 48, 48);
+            }
+        }
+    };
 }

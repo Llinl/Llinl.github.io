@@ -2,11 +2,19 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/preloader-compiled.js" />
+        <item url="file://$PROJECT_DIR$/sprite-compiled.js" />
+        <item url="file://$PROJECT_DIR$/map-compiled.js" />
+        <item url="file://$PROJECT_DIR$/frame-compiled.js" />
         <item url="file://$PROJECT_DIR$/gameScript2-compiled.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/gameScript2-compiled.js" />
+      <root url="file://$PROJECT_DIR$/preloader-compiled.js" />
+      <root url="file://$PROJECT_DIR$/sprite-compiled.js" />
+      <root url="file://$PROJECT_DIR$/map-compiled.js" />
+      <root url="file://$PROJECT_DIR$/frame-compiled.js" />
+      <root url="file://$PROJECT_DIR$/VillainIdler-compiled.js" />
     </CLASSES>
     <SOURCES />
   </library>
