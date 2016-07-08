@@ -3,13 +3,14 @@
 var imageRepository = new function () {
     "use strict";
     console.log("Start image load");
-    let numImages = 3;
+    let numImages = 4;
     let numLoaded = 0;
 
     // Define images
     this.imgMap = new Image();
     this.spriteMap = new Image();
     this.logImg = new Image();
+    this.fold = new Image();
 
     // Ensure all images have loaded before starting the game
 
@@ -20,20 +21,16 @@ var imageRepository = new function () {
             window.init();
         }
     }
-    this.imgMap.onload = function() {
-        imageLoaded();
-    };
+    this.imgMap.onload = function() {imageLoaded();};
 
-    this.spriteMap.onload = function() {
-        imageLoaded();
-    };
+    this.spriteMap.onload = function() {imageLoaded();};
 
-    this.logImg.onload = function(){
-        imageLoaded();
-    }
+    this.logImg.onload = function(){imageLoaded();}
+    this.fold.onload = function(){imageLoaded();}
 
     // Set images src
     this.imgMap.src = "./Resources/Images/CityTileMap.png";
     this.spriteMap.src = "./Resources/Images/SpriteMap.png";
     this.logImg.src = "./Resources/Images/LogImg.png";
+    this.fold.src = "./Resources/Images/Fold.png";
 };

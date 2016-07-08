@@ -23,3 +23,9 @@ class Log extends Frame{
         this.element.scrollTop = this.element.scrollHeight;
     }
 }
+class Center extends Frame{
+    constructor(){
+        super("midline");
+        this.element.style.backgroundImage = "url('Resources/Images/Fold.png')";
+    }
+}

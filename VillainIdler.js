@@ -128,7 +128,9 @@ class Game{
             powers_page:{
 
             },
-            slide_page:{}
+            slide_page:{},
+            center:{center:new Center()}
+
         };
 
 
@@ -156,6 +158,7 @@ class Game{
     get GUI() {return this._GUI;} set GUI(value){this._GUI = value;}
 }
 var log = new Log();
+
 function init() {
     game = new Game();
     console.log(game.GUI.map_page.map.player);

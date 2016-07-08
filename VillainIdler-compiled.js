@@ -117,7 +117,9 @@ class Game {
             research_page: {},
             factory_page: {},
             powers_page: {},
-            slide_page: {}
+            slide_page: {},
+            center: { center: new Center() }
+
         };
 
         this.GUI.map_page.map.background.redraw();
@@ -148,6 +150,7 @@ class Game {
     }
 }
 var log = new Log();
+
 function init() {
     game = new Game();
     console.log(game.GUI.map_page.map.player);
