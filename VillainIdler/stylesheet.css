@@ -4,10 +4,8 @@ canvas{
     /* Use calc to make sure that browser without transform support
      * (that therefore also dont support calc) don't
      * actually move your elements. */
-    //left: calc(50%);
-    //top: calc(50%);
+
     /* Don't forget to prefix. */
-    //transform: translate(-50%,-50%);
     box-sizing: border-box;
 }
 .comicPage{
@@ -16,7 +14,6 @@ canvas{
 }
 #gameWrap {
     font-family: "Comic Sans MS", cursive, sans-serif;
-    //border: 1px solid black;
     width: 100vw;
     height: 100vh;
     background: black;
@@ -24,10 +21,8 @@ canvas{
     padding: 0 0 0 0;
 }
 #playarea-wrap {
-    //border: 1px solid black;
     width:155vh;
     height: 99vh;
-    //background: orange;
     box-sizing: border-box;
     margin: auto;
     padding: 0 0 0 0;
@@ -39,10 +34,7 @@ canvas{
     background: lightgrey;
 }
 .bookmark-wrap{
-    //border: 1px solid black;
-    width:10vh;
-    //height: 99vh;
-    //background: lightgrey;
+    width: 10vh;
     box-sizing: border-box;
     margin: 0 0 0 0;
     padding: 0 0 0 0;
@@ -77,7 +69,6 @@ canvas{
     padding: 0 0 0 0;
 }
 #mapWrap {
-    //border: 1px solid black;
     width:133vh;
     height: 99vh;
     background: red;
@@ -86,20 +77,15 @@ canvas{
     padding: 0 0 0 0;
 }
 #pagesWrap{
-    //border: 1px solid black;
-    //width:100vh;
     height: 99vh;
     margin: 0 0 0 0;
     background: white;
 }
 .comicPanel{
-    //border: 1px solid black;
-    //padding: 10px 10px 10px 10px;
     pading:0 0 0 0;
     margin: 2vh 2vh 2vh 2vh;
 }
 #pageL{
-    //border: 1px solid black;
     width:48%;
     height: 99vh;
     background: #fff7ca;
@@ -109,14 +95,11 @@ canvas{
 #midline{
     width:4%;
     height:99vh;
-    //border: 1px solid black;
     padding-left: 0;
     padding-right: 0;
 }
 #pageR{
-    //border: 1px solid black;
     width:48%;
-    //height: 75vh;
     background: #fdf0d0;
     margin: 0 0 0 0;
     padding: 0 0 0 0;
@@ -124,17 +107,14 @@ canvas{
 #topPanelL{
     border: 1px solid black;
     width:94%;
-    //height: 690px;
     padding-bottom: 93.6%;
     background:deeppink;
 
 }
 #bottomPanelL{
     border: 1px solid black;
-    //width:66vh;
     height: 32.96vh;
     background: white;
-    //background-image: url("Resources/Images/LogImg.png");
     background-size: 100%;
     overflow-y: auto;
 }
@@ -151,13 +131,11 @@ canvas{
 
 #topPanelR{
     border: 1px solid black;
-    //width:66vh;
     height: 95vh;
     background: lightpink;
 }
 
 .Absolute-Center {
-    //margin: auto;
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
 }
